@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get current git tag
+      uses: devops-actions/action-get-tag@v1.0.1
+      with:
+    # Whether to strip "v" from the tag or not
+        strip_v: no # optional
+
+    - name: Print tag
+      run: echo $(tag)
+      
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
