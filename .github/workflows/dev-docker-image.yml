@@ -15,9 +15,9 @@ jobs:
     steps:
     - name: Get current git tag
       uses: devops-actions/action-get-tag@v1.0.1
-      with:
+      #with:
     # Whether to strip "v" from the tag or not
-        strip_v: no # optional
+        #strip_v: no # optional
 
     - name: Print tag
       run: echo $(tag)
